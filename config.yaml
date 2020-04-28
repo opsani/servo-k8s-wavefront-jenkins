@@ -16,7 +16,8 @@ wavefront:
   warmup:    30
   duration:  300
   api_host: "https://my-company.wavefront.com"
-  api_key: "changeme"
+  api_key_path: "/etc/opsani-wavefront/token"
+  # api_key: "api-key" #alternate to reading token from a file
   metrics:
     latency:
       unit: ms
@@ -31,7 +32,7 @@ wavefront:
       query:  'avg(ts(appdynamics.apm.overall.calls_per_min,  env=foo and app=my-app))'
       time_aggr:   avg
 jenkins:
-  jenkins_secret_path: "/etc/opsani/jenkins/token"
+  jenkins_secret_path: "/etc/opsani-jenkins/token"
   jenkins_host: "https://example.jenkins.com"
   jenkins_job: "load-gen/master"
   jenkins_user: "opsani"
