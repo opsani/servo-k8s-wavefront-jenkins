@@ -1,0 +1,38 @@
+k8s:
+  application:
+    components:
+      app:
+        settings:
+          cpu:
+            min: 0.125
+            max: 1.0
+          memory:
+            min: 512Ki
+            max: 8192Ki
+          replicas:
+            min: 1
+            max: 4
+wavefront:
+  warmup:    30
+  duration:  300
+  api_host: "https://my-company.wavefront.com"
+  api_key: "changeme"
+  metrics:
+    latency:
+      unit: ms
+      granularity: m
+      summarization: LAST
+      query:  'avg(ts(appdynamics.apm.overall.avg_resp_time_ms, env=foo and app=my-app))'
+      time_aggr:   avg
+    throughput:
+      unit: request/s
+      granularity: m
+      summarization: LAST
+      query:  'avg(ts(appdynamics.apm.overall.calls_per_min,  env=foo and app=my-app))'
+      time_aggr:   avg
+jenkins:
+  jenkins_secret_path: "/etc/opsani/jenkins/token"
+  jenkins_host: "https://example.jenkins.com"
+  jenkins_job: "load-gen/master"
+  jenkins_user: "opsani"
+  jenkis_polling_interval: 60
