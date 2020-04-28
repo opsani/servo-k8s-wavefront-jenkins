@@ -26,7 +26,7 @@ ADD https://raw.githubusercontent.com/opsani/servo/master/servo \
     https://raw.githubusercontent.com/opsani/servo-magg/master/measure \
     /servo/
 
-RUN chmod a+rwx /servo/adjust /servo/measure /servo/servo /usr/local/bin/kubectl /usr/local/bin/vegeta
+RUN chmod a+rwx /servo/adjust /servo/measure /servo/servo /usr/local/bin/kubectl
 RUN chmod a+r /servo/adjust.py /servo/measure.py measure.d/measure.py
 RUN chmod a+rwx /servo/measure.d/measure-jenkins /servo/measure.d/measure-wavefront
 

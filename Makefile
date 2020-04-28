@@ -1,4 +1,4 @@
-IMG_NAME ?= opsani/servo-k8s-wavefront-vegeta
+IMG_NAME ?= opsani/servo-k8s-wavefront-jenkins
 IMG_TAG ?= latest
 
 container:
