@@ -1,20 +1,22 @@
 FROM python:3.6-slim
 
-LABEL maintainer="robert@opsani.com"
+LABEL maintainer="support@opsani.com"
 LABEL description="A servo for opsani.com optimization"
 LABEL plugins="servo-k8s, servo-wavefront, servo-jenkins"
-LABEL version="0.1.0"
+LABEL source="https://github.com/opsani/servo-k8s-wavefront-jenkis"
+LABEL version="0.1.1"
+
 WORKDIR /servo
 
 ADD  https://storage.googleapis.com/kubernetes-release/release/v1.16.2/bin/linux/amd64/kubectl /usr/local/bin/
 
 # Install dependencies
-RUN apt update && apt -y install procps tcpdump curl wget
+RUN apt update && apt -y install procps tcpdump curl wget jenkinsapi wavefront_api_client
 RUN pip3 install requests PyYAML python-dateutil 
 
 RUN mkdir -p measure.d
 
-ADD https://raw.githubusercontent.com/opsani/servo-jenkins/master/load measure.d/measure-jenkins
+ADD https://raw.githubusercontent.com/opsani/servo-jenkins/master/load.py measure.d/measure-jenkins
 ADD https://raw.githubusercontent.com/opsani/servo-wavefront/master/measure measure.d/measure-wavefront
 ADD https://raw.githubusercontent.com/opsani/servo/master/measure.py measure.d/
 
